@@ -1,0 +1,76 @@
+# ========================================
+# HỆ THỐNG GIÁM SÁT LÁI XE - DRIVER MONITORING SYSTEM
+# Requirements File - Generated: 2026-01-29
+# ========================================
+
+# --- GUI FRAMEWORK ---
+flet==0.28.3
+flet-desktop==0.28.3
+
+# --- COMPUTER VISION & IMAGE PROCESSING ---
+opencv-python==4.12.0.88
+pillow==12.0.0
+matplotlib==3.10.7
+
+# --- AI & DEEP LEARNING ---
+torch==2.9.0
+torchvision==0.24.0
+ultralytics==8.3.214
+ultralytics-thop==2.0.17
+
+# --- SCIENTIFIC COMPUTING ---
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.16.2
+scikit-learn==1.7.2
+
+# --- NLP & TEXT PROCESSING ---
+spacy==3.8.11
+en_core_web_sm==3.8.0
+
+# --- WEB & API ---
+requests==2.32.5
+Flask==3.1.2
+flask-cors==6.0.1
+
+# --- GOOGLE AI & CLOUD ---
+google-generativeai==0.8.6
+google-ai-generativelanguage==0.6.15
+google-api-python-client==2.187.0
+
+# --- AUDIO & SPEECH ---
+gTTS==2.5.4
+pyttsx3==2.99
+SpeechRecognition==3.14.5
+PyAudio==0.2.14
+
+# --- TRANSLATION & LANGUAGE ---
+deep-translator==1.11.4
+googletrans==3.1.0a0
+
+# --- UTILITIES ---
+python-dotenv==1.2.1
+python-docx==1.2.0
+qrcode==8.2
+pyperclip==1.11.0
+
+# --- CRYPTOGRAPHY ---
+pycryptodome==3.21.0  # AES-256 encryption for face data
+
+# --- DATABASE ---
+pyodbc==5.3.0
+
+# --- WINDOWS SPECIFIC ---
+pywin32==311
+pypiwin32==223
+
+# --- OTHERS ---
+tqdm==4.67.1
+coloredlogs==15.0.1
+
+# NOTE: Để cài đặt tất cả dependencies, chạy:
+# pip install -r requirements.txt
+
+
+# chưa chạy được model AI (arc face) thì tải cái ni :  
+# pip install ultralytics insightface onnxruntime scikit-learn pycryptodome

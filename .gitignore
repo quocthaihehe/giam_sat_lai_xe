@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+venv/
+.env
+.idea/
+.vscode/
+.gemini/
+*.log
+src/BUS/oa_core/data/thong_bao_log.json
+src/BUS/oa_core/data/API.json
