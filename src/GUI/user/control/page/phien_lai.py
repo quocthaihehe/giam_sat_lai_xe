@@ -1,6 +1,7 @@
 import flet as ft
 import threading
 import time
+from src.BUS.oa_core.sua_thong_bao.tuy_chinh_thong_bao import get_thong_bao_service
 
 class PhienLaiPage(ft.Column):
     def __init__(self):
@@ -16,6 +17,9 @@ class PhienLaiPage(ft.Column):
         self.timer_text = ft.Text("00:00:00", size=20, weight=ft.FontWeight.BOLD)
 
         self.timer_text = ft.Text("00:00:00", size=20, weight=ft.FontWeight.BOLD)
+        
+        # --- OA SERVICE ---
+        self.oa_service = get_thong_bao_service()
 
         self.init_ui()
 
@@ -155,7 +159,30 @@ class PhienLaiPage(ft.Column):
     def handle_alert_callback(self, message: str, type: str = "warning"):
         """Callback khi nhận cảnh báo từ AI"""
         current_time = time.strftime("%H:%M")
+        full_time = time.strftime("%H:%M:%S %d/%m/%Y")
+        
         new_log = self._create_log_item(current_time, message, type)
+        
+        # Logic gửi Telegram
+        if type == "warning" and self.oa_service.is_alert_enabled():
+            token = self.oa_service.get_default_token()
+            chat_id = self.oa_service.get_default_chat_id()
+            
+            if token and chat_id:
+                tele_msg = f"""🚨 <b>CẢNH BÁO: TÀI XẾ BUỒN NGỦ!</b>
+
+⏰ <b>Thời gian:</b> {full_time}
+⚠️ <b>Nội dung:</b> {message}
+📸 <b>Camera:</b> Dashboard (AI Detected)
+
+<i>Hệ thống tự động phát hiện dấu hiệu buồn ngủ.</i>"""
+                
+                # Chạy trong thread riêng để không block UI camera
+                threading.Thread(
+                    target=self.oa_service.send_message,
+                    args=(token, chat_id, tele_msg),
+                    daemon=True
+                ).start()
         
         # Thêm vào đầu danh sách (insert at 0)
         self.log_list.controls.insert(0, new_log)
